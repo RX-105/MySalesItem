@@ -13,13 +13,16 @@ class Sales_Item{
         double revenue = 0.0;
 };
 
+// Sales_Item的成员函数，将调用对象的属性和参数对象的属性合并
+// @param src 需要合并的数据来源
 Sales_Item& Sales_Item::combine(const Sales_Item& src) {
     this->units_sold += src.units_sold;
     this->revenue += src.revenue;
     return *this;
 }
 
-//
+// 返回该对象的平均价格
+// @return 如果销量不为零，则计算并返回平均价格；否则返回0
 double Sales_Item::avg_price() const {
     if(this->units_sold)
         return this->revenue / this->units_sold;
@@ -28,6 +31,7 @@ double Sales_Item::avg_price() const {
 }
 
 // Sales_Item类的成员函数，返回该类对象的属性
+// @return 返回包含类对象属性的string
 std::string Sales_Item::getAll() const {
     return "Units sold:"+std::to_string(this->units_sold)+
            "\nRevenue:"+std::to_string(this->revenue);
