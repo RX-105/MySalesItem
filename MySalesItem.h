@@ -2,12 +2,18 @@
 #include <iostream>
 #include <string>
 class Sales_Item{
+    friend std::istream &read(std::istream&,Sales_Item&);
+    friend std::ostream &write(std::ostream&,const Sales_Item&);
     public:
+        Sales_Item() = default;
+        Sales_Item(std::string isbn) : bookNo(isbn) {}
+        Sales_Item(std::string isbn,unsigned sold,double revenue) :
+                  bookNo(isbn), units_sold(sold), revenue(revenue) {}
         std::string isbn() const { return bookNo; };
         Sales_Item& combine(const Sales_Item&);
         double avg_price() const;
         std::string getAll() const;
-
+    private:
         std::string bookNo;
         unsigned int units_sold = 0;
         double revenue = 0.0;
